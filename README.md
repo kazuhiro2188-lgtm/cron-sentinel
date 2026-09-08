@@ -146,7 +146,7 @@ calendarWarnings(calendar, new Date());
 ```ts
 import {
   check, dailyAt, defineCalendar, FileJournal, markAlerted, pendingAlerts, weeklyOn,
-} from "@cron-sentinel/core";
+} from "cron-sentinel";
 
 const jobs = [
   { name: "ポータル掲載の更新", schedule: dailyAt("06:00"), graceMinutes: 30 },
