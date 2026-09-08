@@ -1,0 +1,26 @@
+{
+  "name": "@cron-sentinel/core",
+  "version": "0.1.0",
+  "description": "Detects scheduled jobs that did not run. Business-day aware. Zero runtime dependencies.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "files": ["dist", "README.md"],
+  "keywords": ["cron", "monitoring", "heartbeat", "dead-man-switch", "scheduler", "alerting"],
+  "packageManager": "pnpm@11.1.2",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "example": "pnpm build && node examples/portal-sync.mjs",
+    "check": "pnpm typecheck && pnpm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
