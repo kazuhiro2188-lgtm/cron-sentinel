@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["22", "24"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # pnpm のバージョンは package.json の packageManager が唯一の情報源。
+      # ここで version を重ねて指定すると action が失敗する。
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: 型チェック
+        run: pnpm typecheck
+
+      - name: テスト
+        run: pnpm test
+
+      - name: ビルド
+        run: pnpm build
+
+      # ビルドが通ることと、実際に業務が回ることは別物なので、例を通しで走らせる。
+      # 例の中に「駐輪場の質問が管理規約 第7条に当たること」の確認が入っており、
+      # 検索の質が落ちたらここで落ちる。
+      # 例の中に「ポータル掲載の更新が missing になること」の確認が入っており、
+      # 判定が壊れたらここで落ちる。
+      - name: 動作確認 — 定時処理の見張りの例が最後まで動く
+        run: node examples/portal-sync.mjs
+
+      - name: 動作確認 — 監視レポートが実際に生成されている
+        run: |
+          test -f "examples/out/監視レポート.txt" \
+            || { echo "監視レポートが生成されていません"; exit 1; }
