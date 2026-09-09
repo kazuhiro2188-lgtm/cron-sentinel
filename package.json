@@ -33,7 +33,9 @@
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "example": "pnpm build && node examples/portal-sync.mjs",
-    "check": "pnpm typecheck && pnpm test"
+    "check": "pnpm typecheck && pnpm test",
+    "prepublishOnly": "pnpm build",
+    "prepare": "pnpm build"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
