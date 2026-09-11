@@ -6,6 +6,9 @@
 ![実行時依存](https://img.shields.io/badge/runtime%20dependencies-0-1f5f52)
 ![License](https://img.shields.io/badge/license-MIT-1f5f52)
 
+> **この部品は単体でも使えますが、賃貸管理の月次オーナー報告を自動化する [report-agent](https://github.com/kazuhiro2188-lgtm/report-agent) の一部として実際に動いています。**  
+> 同じ考え方で作った部品: [factlint](https://github.com/kazuhiro2188-lgtm/factlint)（AIが書いた数値の検証） / [agent-kit](https://github.com/kazuhiro2188-lgtm/agent-kit)（手順の実行・途中からの再開・人の承認） / [docite](https://github.com/kazuhiro2188-lgtm/docite)（契約書から出典つきで引く）
+
 ---
 
 ## 実際の業務ではこう使う — 不動産会社の定時処理を見張る
